@@ -1,10 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row } from 'react-bootstrap'
 import CardMovie from './CardMovie'
 import NotFound from './NotFound'
 import Pagination from './Pagination'
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllMovie } from '../redux/actions/moviesAction';
 
-function MovieList({ movies, getPage, pageCount }) {
+function MovieList() {
+
+    // Hooks
+  const [movies, setMovies] = useState([]);
+
+  //----------------redux-----------------------
+  const dispatch = useDispatch();
+  // To execute the function
+  useEffect(() => {
+    dispatch(getAllMovie()); 
+  }, [])
+
+  // --- Get movies data by redux
+  const dataMovies = useSelector((state) => state.movies) 
+  // Set movies data to our movies Hook
+  useEffect(() => {
+    setMovies(dataMovies)
+  }, [dataMovies])
+  //----------------------------------------------
+
     return (
         <>
             <Row className="mt-3">
@@ -20,7 +41,7 @@ function MovieList({ movies, getPage, pageCount }) {
                         <NotFound />
                 }
                 {
-                   movies.length >= 1 ? (<Pagination getPage={getPage} pageCount={pageCount} />) : null
+                   movies.length >= 1 ? (<Pagination />) : null
                 }
             </Row>
         </>
