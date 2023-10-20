@@ -60,12 +60,6 @@ To start exploring the world of movies with the Movie App, follow these simple s
     cd Movie-App-React-Redux
     ```
 
-    OR
-
-    **Download and Extract the ZIP:**
-
-    [Download ZIP](https://github.com/YNS-JNS/Movie-App-React-Redux/archive/main.zip)
-
 2. **Install Dependencies:**
 
     ```bash
